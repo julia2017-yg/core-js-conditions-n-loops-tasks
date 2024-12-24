@@ -66,8 +66,15 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -88,8 +95,11 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    return false;
+  }
+  return a === b || a === c || b === c;
 }
 
 /**
@@ -106,8 +116,23 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanSymbols = [
+    { value: 10, symbol: 'X' },
+    { value: 9, symbol: 'IX' },
+    { value: 5, symbol: 'V' },
+    { value: 4, symbol: 'IV' },
+    { value: 1, symbol: 'I' },
+  ];
+  let numeralLetter = '';
+  let newNum = num;
+  for (let i = 0; i < romanSymbols.length; i += 1) {
+    while (romanSymbols[i].value <= newNum) {
+      newNum -= romanSymbols[i].value;
+      numeralLetter += romanSymbols[i].symbol;
+    }
+  }
+  return numeralLetter;
 }
 
 /**
@@ -125,8 +150,32 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
+function convertNumberToString(/*numberStr*/) {
   throw new Error('Not implemented');
+  // const digitWords = {
+  //   0: 'zero',
+  //   1: 'one',
+  //   2: 'two',
+  //   3: 'three',
+  //   4: 'four',
+  //   5: 'five',
+  //   6: 'six',
+  //   7: 'seven',
+  //   8: 'eight',
+  //   9: 'nine',
+  //   '.': 'point',
+  //   ',': 'point',
+  //   '-': 'minus',
+  // };
+  // let result = '';
+
+  // for (const char of numberStr) {
+  //   if (digitWords[char] !== undefined) {
+  //     result += ' ';
+  //   }
+  //   result += digitWords[char];
+  // }
+  // return result;
 }
 
 /**
